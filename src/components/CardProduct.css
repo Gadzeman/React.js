@@ -1,0 +1,9 @@
+.card{
+    border: 5px solid darkslategrey;
+    height: inherit;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+    border-radius: 15px;
+}

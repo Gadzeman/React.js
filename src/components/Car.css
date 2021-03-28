@@ -1,0 +1,10 @@
+.car{
+    width: 200px;
+    height: inherit;
+    border: indianred solid 5px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
