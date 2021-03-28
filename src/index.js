@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App test={"(здесь способ, как передавать пропсы между компонентами)"}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
