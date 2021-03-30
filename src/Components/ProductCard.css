@@ -1,0 +1,10 @@
+.wrapProduct{
+    width: 500px;
+    background: silver;
+    border: darkslategrey solid 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 30px;
+}
