@@ -1,36 +1,37 @@
-import React, {Component} from 'react';
+import React from "react"
 import {useState} from "react"
 
-function App () {
+function App(){
 
     const [users, setUsers] = useState([
-        {"id": 1, "name": "vasya", "age": 23},
-        {"id": 2, "name": "petya", "age": 22},
-        {"id": 3, "name": "anya", "age": 19},
-        {"id": 4, "name": "katya", "age": 20}
+        {"id": 1, "name": "anya"},
+        {"id": 2, "name": "vasya"},
+        {"id": 3, "name": "petya"},
+        {"id": 4, "name": "katya"},
+        {"id": 5, "name": "dima"},
+        {"id": 6, "name": "bogdan"}
     ])
-
-    const [toHideUser, setToHideUser] = useState([])
-    const filteredArr = users.filter(user => !toHideUser.includes(user.id))
-    const toHide = () => {
-        let newArr = [...filteredArr]
-        let hidUser = newArr[0]
-        if(!hidUser) return
-        setToHideUser([...toHideUser, hidUser.id])
+    const [hidUsers, setHidUsers] = useState([])
+    const filteredUsers = users.filter(user => !hidUsers.includes(user.id))
+    const toRemoveUser = () => {
+        let newArr = [...filteredUsers]
+        let removedUser = newArr[0]
+        if (!removedUser) return
+        setHidUsers([...hidUsers, removedUser.id])
     }
     const toRevert = () => {
-        setToHideUser([])
+        setHidUsers([])
     }
 
     return(
         <div>
             <ul>
-                <button onClick={toHide}> Remove user </button>
-                <button onClick={toRevert}> Revert users</button>
-                {filteredArr.map(user => <li key={user.id}>{user.name}</li>)}
+                <button onClick={toRemoveUser}> Remove user </button>
+                <button onClick={toRevert}> Revert users </button>
+                {filteredUsers.map(user => <li key={user.id}>{user.name}</li>)}
             </ul>
         </div>
     )
 }
 
-export default App;
+export default App
