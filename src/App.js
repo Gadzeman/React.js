@@ -14,8 +14,7 @@ export function App() {
 
     const [hidUsers, setHidUsers] = useState([])
     const filteredUsers = users.filter(user => !hidUsers.includes(user.id))
-    const toHideUser = () => {
-        let removedUser = filteredUsers[0]
+    const toHideUser = (removedUser) => {
         if (!removedUser) return
         setHidUsers([...hidUsers, removedUser.id])
     }
@@ -25,9 +24,8 @@ export function App() {
 
     return(
         <div>
-            <button onClick={toHideUser}> Remove user </button>
             <button onClick={toRevertUsers}> Revert users </button>
-            {filteredUsers.map(user => <h4 key={user.id}>{user.id} {user.name}</h4>)}
+            {filteredUsers.map(user => (<h4 key={user.id}>{user.id} {user.name} - <button onClick={() => toHideUser(user)}> Remove user </button></h4> ))}
         </div>
     )
 }
