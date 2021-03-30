@@ -1,84 +1,34 @@
 import React, {Component} from 'react';
-import {useState} from 'react';
-import Product from "./Components/ProductCard"
-import _ from "./App.css"
+import {useState} from "react"
 
 function App () {
 
-    const [arr, setArr] = useState([
-        {"id": 1, "title": "tomato", "represent": "It add in salat and pasta", "price": 1.99},
-        {"id": 2, "title": "apple", "represent": "It gives more energy", "price": 2.99},
-        {"id": 3, "title": "orange", "represent": "Citrus. There's people who don't like it", "price": 0.99},
-        {"id": 4, "title": "bananas", "represent": "It's yellow usually", "price": 4.99}
+    const [users, setUsers] = useState([
+        {"id": 1, "name": "vasya", "age": 23},
+        {"id": 2, "name": "petya", "age": 22},
+        {"id": 3, "name": "anya", "age": 19},
+        {"id": 4, "name": "katya", "age": 20}
     ])
 
-    // let products = [
-    //     {"id": 1, "title": "tomato", "represent": "It add in salat and pasta", "price": 1.99},
-    //     {"id": 2, "title": "apple", "represent": "It gives more energy", "price": 2.99},
-    //     {"id": 3, "title": "orange", "represent": "Citrus. There's people who don't like it", "price": 0.99},
-    //     {"id": 4, "title": "bananas", "represent": "It's yellow usually", "price": 4.99}
-    // ]
-
-    // const removeItem = (itemToRemove) => {
-    //     if(itemToRemove !== "first" && itemToRemove !== "last") return
-    //
-    //     let newArr = [...arr]
-    //     itemToRemove === "first" && newArr.shift()
-    //     itemToRemove === "last" && newArr.pop()
-    //     setArr(newArr)
-    // }
-    // or check the second variant
-    // const removeItem = (itemToRemove) => {
-    //     let newArr = [...arr]
-    //     itemToRemove === "first" ? newArr.shift() : newArr.pop()
-    //     setArr(newArr)
-    // }
-
-    // Завдання 2
-    const [itemsToHide, setItemsToHide] = useState([])
-    const filteredArr = arr.filter(value => !itemsToHide.includes(value.id))
-    const handleArrChange = () => {
-        const newArr = [...filteredArr]
-        const itemToRemove = newArr[0]
-        if(!itemToRemove) return
-        setItemsToHide([...itemsToHide, itemToRemove.id])
+    const [toHideUser, setToHideUser] = useState([])
+    const filteredArr = users.filter(user => !toHideUser.includes(user.id))
+    const toHide = () => {
+        let newArr = [...filteredArr]
+        let hidUser = newArr[0]
+        if(!hidUser) return
+        setToHideUser([...toHideUser, hidUser.id])
     }
-    const onRevert = () => {
-        setItemsToHide([])
+    const toRevert = () => {
+        setToHideUser([])
     }
-
 
     return(
         <div>
-
-            {/* Моя спроба */}
-            <div className={"wrapProductApp"}>
-                {/*{products.map(product => <Product title={product.title} represent={product.represent} price={product.price}/>)}*/}
-            </div>
-            <br/>
-
-            {/* По відео */}
-            <div>
-                {/*<button onClick={*/}
-                {/*    () => removeItem("first")*/}
-                {/*}> Remove first </button>*/}
-                {/*<button onClick={*/}
-                {/*    () => removeItem("last")*/}
-                {/*}> Remove last </button>*/}
-                {/*<ul>*/}
-                {/*    {arr.map(value => (<li key={value.id}>{value.title}</li>))}*/}
-                {/*</ul>*/}
-                {/*<hr/>*/}
-            </div>
-
-            {/*Завдання 2*/}
-            <div>
-                <button onClick={handleArrChange}> Hide Element </button>
-                <button onClick={onRevert}> Revert Elements </button>
-                <ul>
-                    {filteredArr.map(value => <li key={value.id}>{value.id} {value.title}</li>)}
-                </ul>
-            </div>
+            <ul>
+                <button onClick={toHide}> Remove user </button>
+                <button onClick={toRevert}> Revert users</button>
+                {filteredArr.map(user => <li key={user.id}>{user.name}</li>)}
+            </ul>
         </div>
     )
 }
