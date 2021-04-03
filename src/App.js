@@ -1,5 +1,8 @@
 import React from "react";
 
+
+
+// ********************Uncontrolled**************************
 function App () {
 
     const [firstName, setFirstName] = React.useState("")
@@ -32,6 +35,7 @@ function App () {
         </div>
     )
 }
+
 
 
 
