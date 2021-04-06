@@ -1,80 +1,58 @@
-import React from "react";
+import React from "react"
+import _ from "./App.css"
+import {Posts} from "./Components/Items"
+import {Users} from "./Components/Items"
 
+const BASE_URL = "https://jsonplaceholder.typicode.com"
 
+export function App () {
 
-// ********************Uncontrolled**************************
-function App () {
+    const [endpoint, setEndPoint] = React.useState("")
+    const [id, setId] = React.useState("")
 
-    const [firstName, setFirstName] = React.useState("")
+    const [items, setItems] = React.useState([])
+    const [singleItem, setSingleItem] = React.useState(null)
 
-    const handleSubmit = () => {
-        alert(JSON.stringify({firstName}, null, 2))
+    const fetchData = async () => {
+        const response = await fetch(`${BASE_URL}/${endpoint}/${id}`)
+        const json = await response.json()
+
+        if(id){
+            setSingleItem(json)
+            setItems([])
+            return
+        }else{
+            setSingleItem(null)
+            setItems(json)
+        }
     }
 
     return (
-        <div style={{
-            textAlign: "center"
-        }}>
-            <h1>Inputs</h1>
-            <input value={firstName} onChange={({target: {value}}) => setFirstName(value)} type="text" name="firstName" placeholder="enter your first name"/>
-            <br/>
-            <br/>
-            <input type="text" name="lastName"  placeholder="enter your last name"/>
-            <br/>
-            <br/>
-            <input type="email" name="email"  placeholder="enter your email"/>
-            <br/>
-            <br/>
-            <input type="number" name="age"  placeholder="enter your age"/>
-            <br/>
-            <br/>
-            <input type="password" name="pass"  placeholder="enter your password"/>
-            <br/>
-            <br/>
-            <button onClick={handleSubmit}>Submit</button>
+        <div className={"app"}>
+            <div>
+                <br/>
+                <br/>
+                <input value={endpoint} onChange={({target: {value}}) => setEndPoint(value)} type="text" placeholder="enter endpoint"/>
+                <br/>
+                <br/>
+                <input value={id} onChange={({target: {value}}) => setId(value)} type="number" placeholder="enter id"/>
+                <br/>
+                <br/>
+                <button onClick={fetchData}>Get Data</button>
+            </div>
+            <div>
+                {singleItem && (<hr/>)}
+                <pre style={{width: 200, textAlign: "left", padding: 20}}>
+                    {singleItem && JSON.stringify(singleItem, null, 2)}
+                </pre>
+            </div>
+            <hr/>
+            <div>
+                {items && <Posts posts={items} />}
+                {items && <Users users={items} />}
+            </div>
         </div>
     )
 }
-
-
-
-
-// ****************************Controlled Inputs***************************
-// function App () {
-//
-//     const firstName = React.useRef()
-//
-//     const onSubmit = (event) => {
-//         event.preventDefault() // prevent - запобігати (в даному випадку запогіаємо перезагрузки сторінки)
-//         console.log(firstName.current.value)
-//         firstName.current.value = ""
-//     }
-//
-//     return (
-//         <div style={{
-//             textAlign: "center"
-//         }}>
-//             <h1>Lecture: Inputs and type of inputs</h1>
-//             <form onSubmit={onSubmit}>
-//                 <input ref={firstName} type="text" name="firstName" placeholder="enter your first name"/>
-//                 <br/>
-//                 <br/>
-//                 <input type="text" name="lastName"  placeholder="enter your last name"/>
-//                 <br/>
-//                 <br/>
-//                 <input type="email" name="email"  placeholder="enter your email"/>
-//                 <br/>
-//                 <br/>
-//                 <input type="number" name="age"  placeholder="enter your age"/>
-//                 <br/>
-//                 <br/>
-//                 <input type="password" name="pass"  placeholder="enter your password"/>
-//                 <br/>
-//                 <br/>
-//                 <button type="submit">Submit</button>
-//             </form>
-//         </div>
-//     )
-// }
 
 export default App
