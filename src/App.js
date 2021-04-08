@@ -1,58 +1,101 @@
-import React from "react"
-import _ from "./App.css"
-import {Posts} from "./Components/Items"
-import {Users} from "./Components/Items"
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect,
+    useLocation, useHistory, useParams, useRouteMatch
+} from "react-router-dom";
 
-const BASE_URL = "https://jsonplaceholder.typicode.com"
+export default function App() {
+    return (
+        <Router>
+            <div>
+                <nav>
+                    <ol>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/posts">Posts</Link>
+                        </li>
+                    </ol>
+                </nav>
 
-export function App () {
+                <Switch>
+                    <Route path="/" component={Home} exact />
 
-    const [endpoint, setEndPoint] = React.useState("")
-    const [id, setId] = React.useState("")
+                    <Route path="/posts" exact>
+                        <Posts />
+                    </Route>
 
-    const [items, setItems] = React.useState([])
-    const [singleItem, setSingleItem] = React.useState(null)
+                    <Route path="/posts/:id">
+                        <PostDetails />
+                    </Route>
+
+                    <Route>
+                        <h1>Page not found</h1>
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
+    );
+}
+
+function Home(props) {
+    return <h2>Home</h2>;
+}
+
+function Posts() {
+
+    const [posts, setPosts] = React.useState([])
 
     const fetchData = async () => {
-        const response = await fetch(`${BASE_URL}/${endpoint}/${id}`)
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts")
         const json = await response.json()
 
-        if(id){
-            setSingleItem(json)
-            setItems([])
-            return
-        }else{
-            setSingleItem(null)
-            setItems(json)
-        }
+        setPosts(json)
     }
 
+    React.useEffect(() => {
+        fetchData()
+    }, [])
+
     return (
-        <div className={"app"}>
-            <div>
-                <br/>
-                <br/>
-                <input value={endpoint} onChange={({target: {value}}) => setEndPoint(value)} type="text" placeholder="enter endpoint"/>
-                <br/>
-                <br/>
-                <input value={id} onChange={({target: {value}}) => setId(value)} type="number" placeholder="enter id"/>
-                <br/>
-                <br/>
-                <button onClick={fetchData}>Get Data</button>
-            </div>
-            <div>
-                {singleItem && (<hr/>)}
-                <pre style={{width: 200, textAlign: "left", padding: 20}}>
-                    {singleItem && JSON.stringify(singleItem, null, 2)}
-                </pre>
-            </div>
-            <hr/>
-            <div>
-                {items && <Posts posts={items} />}
-                {items && <Users users={items} />}
-            </div>
+        <div>
+            <ul>
+                {posts.map(post => <Link to={`posts/${post.id}`} key={post.id}><li>{post.id} - {post.title}</li></Link>)}
+            </ul>
         </div>
     )
 }
 
-export default App
+function PostDetails() {
+
+    const {id} = useParams()
+    const history = useHistory()
+
+    const [post, setPost] = React.useState()
+
+    const fetchData = async () => {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/" + id)
+        const json = await response.json()
+
+        setPost(json)
+    }
+
+    React.useEffect(() => {
+        fetchData()
+    }, [id])
+
+    return (
+        <div>
+            {post && (<div><h1>{post.title}</h1> <h4>{post.body}</h4></div>)}
+            <button onClick={() => history.push(`/posts/${+id - 1}`)}>Go to back</button>
+            <button onClick={() => history.push(`/posts/${+id + 1}`)}>Go to next post</button>
+        </div>
+    )
+}
+
+
