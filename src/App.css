@@ -1,3 +1,39 @@
-.app{
-    text-align: center;
+.wrap{
+    background: rebeccapurple;
+}
+
+.nav{
+    background: rebeccapurple;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.logo{
+    padding-left: 150px;
+    font-size: 24px;
+}
+.endpoints{
+    display: flex;
+    padding-right: 150px;
+
+}
+a{
+    text-decoration: none;
+    color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.content{
+    background: midnightblue;
+    color: white;
+    width: 900px;
+    margin: auto;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
