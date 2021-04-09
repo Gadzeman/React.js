@@ -18,7 +18,7 @@ export default function App() {
                     </div>
                     <div className={"endpoints"}>
                         <h2><Link to={"/posts"}>Posts</Link></h2>
-                        <h2><Link to={"users"}>Users</Link></h2>
+                        <h2><Link to={"/users"}>Users</Link></h2>
                     </div>
                 </nav>
                 <div className={"content"}>
