@@ -1,30 +1,26 @@
 import {
-    INC_CUSTOM,
-    INC,
-    DEC,
-    RESET
-} from "../action-types"
+    INC_ONE,
+    DEC_ONE,
+    UPDATE_ONE
+} from "../action-types/action-types"
 
 const initialState = {
     counter: 0
 }
-export const reducer = (state= initialState, action) => {
+
+export const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case INC_CUSTOM: {
-            return ({...state, counter: state.counter + action.payload})
-        }
-        case INC: {
+        case INC_ONE: {
             return {...state, counter: state.counter + 1}
         }
-        case DEC: {
+        case DEC_ONE: {
             return {...state, counter: state.counter - 1}
         }
-        case RESET: {
-            return {...state, counter: 0}
+        case UPDATE_ONE: {
+            return {...state, counter: state.counter + action.payload}
         }
-        default: {
+        default:
             return state
-        }
     }
 }
 
