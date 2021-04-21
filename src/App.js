@@ -1,20 +1,15 @@
 import React from "react"
 import {useSelector, useDispatch} from "react-redux";
 import {
-    incCustomAction,
-    incAction,
-    decAction,
-    resetAction,
-    incCustomActionTwo,
-    incActionTwo,
-    decActionTwo,
-    resetActionTwo,
-} from "./redux/action-creators"
+    incOne,
+    decOne,
+    updateOne,
+    incTwo,
+    decTwo,
+    updateTwo,
+} from "./redux/action-creators/action-creators"
 
 export default function App () {
-    // const counter = useSelector(({counter1: {counter}}) => {
-    //     console.log(counter)
-    // })
     const counter1 = useSelector(({counter1: {counter}}) => {
         return counter
     })
@@ -24,16 +19,15 @@ export default function App () {
     const dispatch = useDispatch()
     return (
         <div>
-            <h1>{counter1} - 1</h1>
-            <button onClick={() => dispatch(incCustomAction(102))}>INC CUSTOM</button>
-            <button onClick={() => dispatch(incAction())}>INC</button>
-            <button onClick={() => dispatch(decAction())}>DEC</button>
-            <button onClick={() => dispatch(resetAction())}>RESET</button>
-            <h1>{counter2} - 2</h1>
-            <button onClick={() => dispatch(incCustomActionTwo(102))}>INC CUSTOM</button>
-            <button onClick={() => dispatch(incActionTwo())}>INC</button>
-            <button onClick={() => dispatch(decActionTwo())}>DEC</button>
-            <button onClick={() => dispatch(resetActionTwo())}>RESET</button>
+            <h1>{counter1}</h1>
+            <button onClick={() => dispatch(updateOne(116))}>UPDATE</button>
+            <button onClick={() => dispatch(incOne())}>INC</button>
+            <button onClick={() => dispatch(decOne())}>DEC</button>
+            <h1>{counter2}</h1>
+            <button onClick={() => dispatch(updateTwo(1123))}>UPDATE</button>
+            <button onClick={() => dispatch(incTwo())}>INC</button>
+            <button onClick={() => dispatch(decTwo())}>DEC</button>
         </div>
     )
 }
+
