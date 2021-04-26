@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react"
+import {useSelector, useDispatch} from "react-redux";
+import {incCounter, decCounter} from "./redux/action-creators/action-creators";
 
-function App() {
+
+export default function App() {
+    const dispatch = useDispatch()
+    const counter = useSelector(({counter: {counter}}) => {
+        return counter
+    })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <h1>Redux MiddleWares</h1>
+        <h1>{counter}</h1>
+        <button onClick={() => dispatch(incCounter())}>INC</button>
+        <button onClick={() => dispatch(decCounter())}>DEC</button>
     </div>
   );
 }
 
-export default App;
