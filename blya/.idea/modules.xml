@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/react-js.iml" filepath="$PROJECT_DIR$/.idea/react-js.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/blya.iml" filepath="$PROJECT_DIR$/.idea/blya.iml" />
     </modules>
   </component>
 </project>
