@@ -2,6 +2,7 @@ import './App.css';
 import React from "react"
 import {useSelector, useDispatch} from "react-redux";
 import {incCounter, decCounter} from "./redux/action-creators/action-creators";
+import Products from "./components/products"
 
 
 export default function App() {
@@ -15,6 +16,8 @@ export default function App() {
         <h1>{counter}</h1>
         <button onClick={() => dispatch(incCounter())}>INC</button>
         <button onClick={() => dispatch(decCounter())}>DEC</button>
+        <hr/>
+        <Products />
     </div>
   );
 }

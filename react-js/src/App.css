@@ -2,6 +2,10 @@ body {
   text-align: center;
 }
 
+img {
+  width: 400px;
+}
+
 .App {
   text-align: center;
 }
