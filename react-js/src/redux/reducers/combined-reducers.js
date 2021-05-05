@@ -1,8 +1,10 @@
 import {combineReducers} from "redux"
-import counter from "./counter-reducer"
 import products from "./products-reducer"
+import cart from "./cart-reducer"
+import wishlist from "./wishlist-reducer"
 
 export const reducers = combineReducers({
-    counter,
-    products
+    products,
+    cart,
+    wishlist
 })
