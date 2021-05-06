@@ -1,5 +1,10 @@
+body {
+    background: black;
+}
+
 .header {
     height: 125px;
+    width: 100%;
     background: black;
     color: white;
     display: flex;
@@ -15,4 +20,39 @@
 }
 .header-menu h4 {
     padding: 0 30px;
+}
+
+.loading {
+    color: white;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 1140px;
+    margin: auto;
+}
+.product {
+    margin-top: 20px;
+    width: 30%;
+    background: white;
+}
+.product-name {
+    text-align: center;
+}
+.product-image{
+    width: 100%;
+}
+.product-description {
+    text-align: justify;
+    width: 70%;
+    margin: auto;
+}
+.product-price {
+    text-align: center;
+}
+.product-buttons {
+    display: flex;
+    justify-content: space-around;
 }
