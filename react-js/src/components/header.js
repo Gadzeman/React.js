@@ -21,10 +21,10 @@ export default function Header () {
             <h1>HEADER</h1>
             <div className={"counters"}>
                 <span>
-                    wishlist: {productsInWishlist.length} ($ {calculatedWishlistSum})
+                    Wishlist: {productsInWishlist.length} ($ {calculatedWishlistSum})
                 </span>
                 <span>
-                    cart: {productsInCart.length} ($ {calculatedCartSum})
+                    Cart: {productsInCart.length} ($ {calculatedCartSum})
                 </span>
             </div>
         </header>
