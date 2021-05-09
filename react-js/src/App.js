@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react"
-import Header from "./components/header"
-import Products from "./components/products";
+import { Header } from "./components"
+import { Products } from "./components";
 
 export default function App() {
     return (

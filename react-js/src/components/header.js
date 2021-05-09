@@ -2,7 +2,7 @@ import React from "react"
 import "../App.css"
 import {useSelector} from "react-redux"
 
-export default function Header () {
+export const Header = () => {
     const {products} = useSelector(store => store.products)
     const {productsInCart} = useSelector(store => store.cart)
     const {productsInWishlist} = useSelector(store => store.wishlist)
